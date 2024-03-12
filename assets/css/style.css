@@ -238,11 +238,47 @@ html {
   top: 0;
   left: 0;
   z-index: -1; /* Ensures content scrolls over the hero */
+  position: relative;
 }
+
+.bottom-right-image {
+  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+  bottom: 0; /* Anchors to the bottom */
+  right: 0; /* Anchors to the left */
+}
+
+.bottom-right-image img {
+  display: block; /* Removes bottom margin/whitespace inherent to inline elements like img */
+  max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
+  height: 100vh; /* Maintains aspect ratio */
+}
+
 
 @media (max-width: 991px) {
   #hero {
     height: 60vh; /* 100% of the viewport height */
+  }
+
+  
+}
+
+@media  (max-width: 1249px) {
+  .bottom-right-image {
+    display: none;
+  }
+  
+  .bottom-right-image img {
+    display: none;
+  }
+
+  #hero h1 {
+    font-size: 60px;
+    text-align: center;
+  }
+  
+  #hero h1 span {
+    color: #007bff; 
+    text-align: center;
   }
 }
 
@@ -251,7 +287,7 @@ html {
 }
 
 #hero h1 span {
-  color: #007bff; /* Sets the color of text inside the span. This is a shade of blue. */
+  color: #007bff;
 }
 
 .slide-in-blurred-bottom {
