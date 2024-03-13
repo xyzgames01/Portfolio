@@ -1,0 +1,479 @@
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #272829;
+  }
+  
+  a {
+    color: #0563bb;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #067ded;
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /*--------------------------------------------------------------
+  # Back to top button
+  # By: Bootstrapmade.com
+  --------------------------------------------------------------*/
+  .back-to-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 996;
+    background: #0563bb;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: all 0.4s;
+  }
+  
+  .back-to-top i {
+    font-size: 28px;
+    color: #fff;
+    line-height: 0;
+  }
+  
+  .back-to-top:hover {
+    background: #0678e3;
+    color: #fff;
+  }
+  
+  .back-to-top.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
+  /*--------------------------------------------------------------
+  # Header
+  # By: Bootstrapmade.com
+  --------------------------------------------------------------*/
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9997;
+    transition: all 0.5s;
+    padding: 15px;
+    overflow-y: auto;
+  }
+  
+  @media (max-width: 991px) {
+    #header {
+      width: 300px;
+      background: #fff;
+      border-right: 1px solid #e6e9ec;
+      left: -300px;
+    }
+  }
+  
+  @media (min-width: 991px) {
+    #main {
+      margin-left: 100px;
+    }
+  }
+  
+  /*--------------------------------------------------------------
+  # Navigation Menu
+  # By: Bootstrapmade.com
+  --------------------------------------------------------------*/
+  /**
+  * Desktop Navigation 
+  */
+  .nav-menu {
+    padding: 0;
+    display: block;
+  }
+  
+  .nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .nav-menu>ul>li {
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .nav-menu a,
+  .nav-menu a:focus {
+    display: flex;
+    align-items: center;
+    color: #45505b;
+    padding: 10px 18px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+    font-size: 15px;
+    border-radius: 50px;
+    background: #f2f3f5;
+    height: 56px;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+  
+  .nav-menu a i,
+  .nav-menu a:focus i {
+    font-size: 20px;
+  }
+  
+  .nav-menu a span,
+  .nav-menu a:focus span {
+    padding: 0 5px 0 7px;
+    color: #45505b;
+  }
+  
+  @media (min-width: 992px) {
+  
+    .nav-menu a,
+    .nav-menu a:focus {
+      width: 56px;
+    }
+  
+    .nav-menu a span,
+    .nav-menu a:focus span {
+      display: none;
+      color: #fff;
+    }
+  }
+  
+  .nav-menu a:hover,
+  .nav-menu .active,
+  .nav-menu .active:focus,
+  .nav-menu li:hover>a {
+    color: #fff;
+    background: #000000;
+  }
+  
+  .nav-menu a:hover span,
+  .nav-menu .active span,
+  .nav-menu .active:focus span,
+  .nav-menu li:hover>a span {
+    color: #fff;
+  }
+  
+  .nav-menu a:hover,
+  .nav-menu li:hover>a {
+    width: 100%;
+    color: #fff;
+  }
+  
+  .nav-menu a:hover span,
+  .nav-menu li:hover>a span {
+    display: block;
+  }
+  
+  /**
+  * Mobile Navigation 
+  */
+  .mobile-nav-toggle {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 9998;
+    border: 0;
+    background: none;
+    font-size: 28px;
+    transition: all 0.4s;
+    outline: none !important;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 5px;
+  }
+  
+  .mobile-nav-toggle i {
+    color: #45505b;
+  }
+  
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+  
+  .mobile-nav-active #header {
+    left: 0;
+  }
+  
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    background-color: #0563bb;
+  }
+  
+  /*--------------------------------------------------------------
+  # Hero Section
+  # By: Zachary Zawodny
+  --------------------------------------------------------------*/
+  
+  #hero {
+    background-color: #f7f7f7; /* Light grey background */
+    background-image: radial-gradient(circle, #000 1px, transparent 1px); /* Black dots */
+    height: 100vh; /* 100% of the viewport height */
+    width: 100%;
+    background-size: 32px 32px;
+    background-position: center;
+    position: fixed; /* This keeps the hero fixed during scrolling */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensures content scrolls over the hero */
+  }
+  
+  .bottom-right-image {
+    position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+    bottom: 0; /* Anchors to the bottom */
+    right: 0; /* Anchors to the left */
+  }
+  
+  .bottom-right-image img {
+    display: block; /* Removes bottom margin/whitespace inherent to inline elements like img */
+    max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
+    height: 100vh; /* Maintains aspect ratio */
+    filter: drop-shadow(8px 8px 10px gray);
+  }
+  
+  #hero h1 {
+    font-size: 60px;
+    text-align: left;
+  }
+  
+  #hero h1 span {
+    color: #007bff;
+    text-align: left;
+  }
+
+  #hero .social-links a {
+    padding-right: 5px; /* Adjust as needed */
+    color: #000;
+    display: inline-block; /* Makes padding more consistent */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+  
+  #hero .social-links a:hover {
+    color: #007bff; /* Keep your color change */
+    transform: scale(1.2); /* Adjust scale value as needed */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+  .title {
+    font-weight: bold;
+    color: #007bff; 
+
+  }
+
+  .rotating-titles {
+    position: relative;
+    height: 1.5em; /* Adjust based on the size of your text */
+    overflow: hidden;
+  }
+  
+  .rotating-titles .title {
+    position: absolute;
+    opacity: 0;
+    animation: cycleTitles 9s infinite; /* 3 items * 3s each = 9s total for the animation */
+    top: 0;
+  }
+  
+  .rotating-titles .title:nth-child(1) {
+    animation-delay: -6s; /* 3s per item: 9s - 3s * 2 */
+  }
+  
+  .rotating-titles .title:nth-child(2) {
+    animation-delay: -3s; /* 3s per item: 9s - 3s */
+  }
+  
+  .rotating-titles .title:nth-child(3) {
+    animation-delay: 0s; /* Start immediately */
+  }
+  
+  @keyframes cycleTitles {
+    0%, 33.333%, 100% {
+      opacity: 0;
+    }
+    16.666%, 29.999% {
+      opacity: 1;
+    }
+  }
+  
+  .slide-in-bck-right {
+    -webkit-animation: slide-in-bck-right 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bck-right 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  
+  
+  .slide-in-blurred-bottom {
+      -webkit-animation: slide-in-blurred-bottom 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+              animation: slide-in-blurred-bottom 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+  }
+
+  @media (max-width: 991px) {
+    #hero {
+      height: 60vh; /* 100% of the viewport height */
+    }
+  }
+  
+  @media  (max-width: 1249px) {
+    .bottom-right-image {
+      display: none;
+    }
+    
+    .bottom-right-image img {
+      display: none;
+    }
+  
+    #hero h1 {
+      font-size: 60px;
+      text-align: center;
+    }
+    
+    #hero h1 span {
+      color: #007bff; 
+      text-align: center;
+    }
+    #hero h2 { 
+        text-align: center;
+      }
+      
+    #hero h3 { /* Adding span here to ensure they pick up the text-align property */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #hero .social-links { /* Adding span here to ensure they pick up the text-align property */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }
+  
+  /* ----------------------------------------------
+   * Generated by Animista on 2024-3-12 12:27:36
+   * Licensed under FreeBSD License.
+   * See http://animista.net/license for more info. 
+   * w: http://animista.net, t: @cssanimista
+   * ---------------------------------------------- */
+  
+  /**
+   * ----------------------------------------
+   * animation slide-in-blurred-bottom
+   * ----------------------------------------
+   */
+   @-webkit-keyframes slide-in-blurred-bottom {
+    0% {
+      -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+              transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+      -webkit-transform-origin: 50% 100%;
+              transform-origin: 50% 100%;
+      -webkit-filter: blur(40px);
+              filter: blur(40px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+              transform: translateY(0) scaleY(1) scaleX(1);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+      -webkit-filter: blur(0);
+              filter: blur(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-blurred-bottom {
+    0% {
+      -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+              transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+      -webkit-transform-origin: 50% 100%;
+              transform-origin: 50% 100%;
+      -webkit-filter: blur(40px);
+              filter: blur(40px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+              transform: translateY(0) scaleY(1) scaleX(1);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+      -webkit-filter: blur(0);
+              filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2024-3-13 0:32:9
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-bck-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-bck-right {
+    0% {
+      -webkit-transform: translateZ(700px) translateX(400px);
+              transform: translateZ(700px) translateX(400px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0) translateX(0);
+              transform: translateZ(0) translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-bck-right {
+    0% {
+      -webkit-transform: translateZ(700px) translateX(400px);
+              transform: translateZ(700px) translateX(400px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0) translateX(0);
+              transform: translateZ(0) translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  
+  
+  /**
+  * Main Content
+  * By: Zachary Zawodny
+  */
+  
+  #main-content {
+    position: relative;
+    z-index: 1; /* Ensures this content layer is above the fixed hero */
+    background-color: #fff; /* Or any color, depending on your design */
+    margin-top: 100vh; /* Same height as the hero to ensure content starts after the hero */
+    /* Add more styling as needed */
+  }
+  
+  @media (max-width: 991px) {
+    #main-content {
+      margin-top: 60vh; /* 100% of the viewport height */
+    }
+  }
