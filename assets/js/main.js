@@ -126,7 +126,7 @@
   /**
    * scroll to hash with out it in the url
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     e.preventDefault(); // Prevent default anchor click behavior
 
     // Use the 'select' helper function to get the destination to scroll to
@@ -149,6 +149,38 @@
     });
   });
 
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".skill-card").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevent click from propagating to the document
+        const targetId = card.getAttribute("data-target");
+        const dropdown = document.getElementById(targetId);
+  
+        // Toggle visibility
+        const isVisible = dropdown.style.maxHeight && dropdown.style.maxHeight !== "0px";
+  
+        // Close all dropdowns
+        document.querySelectorAll(".skill-dropdown").forEach((el) => {
+          el.style.maxHeight = "0px";
+        });
+  
+        // Open the clicked dropdown if it was not already visible
+        if (!isVisible) {
+          dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+        }
+      });
+    });
+  
+    // Add click listener to the document to close the dropdown when clicking outside
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".skill-dropdown").forEach((el) => {
+        el.style.maxHeight = "0px";
+      });
+    });
+  });
+  
+
+
   /**
    * Porfolio isotope and filter
    */
@@ -161,9 +193,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -171,7 +203,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
@@ -232,7 +264,7 @@
       type: 'bullets',
       clickable: true
     }
-  });  
+  });
 
   /**
    * Animation on scroll
