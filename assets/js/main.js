@@ -179,6 +179,23 @@
     });
   });
   
+  document.addEventListener("DOMContentLoaded", () => {
+    const skillCards = document.querySelectorAll(".skill-card");
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Add a delay before adding the shake animation
+          setTimeout(() => {
+            entry.target.classList.add("shake-animation");
+          }, 2800); // 3000ms = 3 seconds
+        }
+      });
+    });
+  
+    skillCards.forEach((card) => observer.observe(card));
+  });
+  
 
 
   /**
