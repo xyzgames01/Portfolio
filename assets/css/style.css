@@ -1022,6 +1022,46 @@ section {
   }
 }
 
+
+.contact {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.contact .section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.contact .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.contact button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #0563bb;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  background-color: #034d8b;
+}
+
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

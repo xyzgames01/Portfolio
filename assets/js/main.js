@@ -178,7 +178,9 @@
       });
     });
   });
-  
+
+
+  // Shake to alert that this is clickable
   document.addEventListener("DOMContentLoaded", () => {
     const skillCards = document.querySelectorAll(".skill-card");
   
@@ -195,8 +197,6 @@
   
     skillCards.forEach((card) => observer.observe(card));
   });
-  
-
 
   /**
    * Porfolio isotope and filter
@@ -281,6 +281,48 @@
       type: 'bullets',
       clickable: true
     }
+  });
+
+  //Form spree ajax
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+    const responseMessage = document.getElementById("form-response");
+  
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Prevent default form submission
+  
+      const formData = new FormData(form);
+      const actionUrl = "https://formspree.io/f/xldgbvdo"; // Replace with your Formspree ID
+  
+      try {
+        const response = await fetch(actionUrl, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          // Show success message
+          responseMessage.style.display = "block";
+          responseMessage.textContent = "Thank you for your message! I’ll get back to you soon.";
+  
+          // Clear the form
+          form.reset();
+        } else {
+          // Show error message
+          responseMessage.style.display = "block";
+          responseMessage.textContent = "Oops! Something went wrong. Please try again.";
+          responseMessage.style.color = "red";
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        responseMessage.style.display = "block";
+        responseMessage.textContent = "Oops! Something went wrong. Please try again.";
+        responseMessage.style.color = "red";
+      }
+    });
   });
 
   /**
