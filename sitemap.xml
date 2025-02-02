@@ -9,7 +9,7 @@
 
 <url>
   <loc>https://www.zacharyzawodny.com/</loc>
-  <lastmod>2025-02-01T05:29:42+00:00</lastmod>
+  <lastmod>2025-02-02T06:18:42+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
@@ -20,6 +20,11 @@
 <url>
   <loc>https://www.zacharyzawodny.com/portfolio-details.html</loc>
   <lastmod>2025-02-01T05:29:42+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.zacharyzawodny.com/dealership-details.html</loc>
+  <lastmod>2025-02-02T06:18:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 

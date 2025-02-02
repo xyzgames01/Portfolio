@@ -913,16 +913,35 @@ section {
   padding: 0;
 }
 
+.media-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625) */
+  background-color: #000; /* Optional for contrast */
+  overflow: hidden;
+}
+
+/* Adjust images and videos */
+.media-container img,
+.media-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures content fits without distortion */
+}
+
 .swiper-button-prev,
 .swiper-button-next {
-  color: #fff; /* Arrow color */
   position: absolute;
   top: 50%;
-  width: 40px;
-  height: 40px;
   transform: translateY(-50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5); 
+  padding: 10px;
   z-index: 10;
-  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .swiper-button-prev {
@@ -933,9 +952,26 @@ section {
   right: 10px; /* Position to the right */
 }
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(0, 0, 0, 0.8);  /* Darker on hover */
+}
+
 .swiper-button-prev::after,
 .swiper-button-next::after {
   font-size: 20px;
+}
+
+pre {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 400px; /* Controls the visible height */
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 
