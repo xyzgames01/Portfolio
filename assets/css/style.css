@@ -972,6 +972,7 @@ section {
   color: #f8f8f2;
   padding: 15px;
   border-radius: 8px;
+  overflow-x: auto;
   overflow-y: auto;
   max-height: 100%; /* Occupies full height of the container */
   font-family: 'Courier New', monospace;
@@ -980,6 +981,33 @@ section {
   white-space: pre; /* Keeps code formatting intact */
 }
 
+/* Mobile-Specific Adjustments */
+@media (max-width: 768px) {
+  .portfolio-details .swiper-slide {
+
+
+    min-height: 60vh !important;  /* Allow scrolling up to 80% of the viewport height */
+
+
+  }
+
+
+  .media-container pre {
+    max-height: 60vh !important;
+    overflow-y: scroll !important; /* Force vertical scrolling */
+    overflow-x: auto !important;   /* Keep horizontal scroll if needed */
+  }
+
+  code {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+  }
+}
+
+code {
+  white-space: pre;
+  word-wrap: normal;
+}
 
 /*--------------------------------------------------------------
 # Testimonials
