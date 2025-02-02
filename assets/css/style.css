@@ -913,23 +913,27 @@ section {
   padding: 0;
 }
 
+/* Consistent 16:9 Aspect Ratio for All Slides */
 .media-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625) */
-  background-color: #000; /* Optional for contrast */
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background-color: #000; 
   overflow: hidden;
 }
 
-/* Adjust images and videos */
+/* Media Styling */
 .media-container img,
-.media-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures content fits without distortion */
+.media-container video,
+.media-container pre {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* For images and videos */
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .swiper-button-prev,
@@ -962,16 +966,18 @@ section {
   font-size: 20px;
 }
 
-pre {
+/* Scrollable Code Block */
+.media-container pre {
   background-color: #2d2d2d;
   color: #f8f8f2;
   padding: 15px;
   border-radius: 8px;
   overflow-y: auto;
-  max-height: 400px; /* Controls the visible height */
+  max-height: 100%; /* Occupies full height of the container */
   font-family: 'Courier New', monospace;
   font-size: 14px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  white-space: pre; /* Keeps code formatting intact */
 }
 
 
