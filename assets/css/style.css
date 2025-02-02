@@ -942,6 +942,16 @@ section {
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
+
+.testimonial-item a img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.testimonial-item a img:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+
 .testimonials .section-header {
   margin-bottom: 40px;
 }
