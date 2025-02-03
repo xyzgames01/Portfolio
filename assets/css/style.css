@@ -979,16 +979,6 @@ section {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-/* Mobile-Specific Adjustment */
-@media (max-width: 768px) {
-  .media-container pre {
-    min-height: 70vh !important;  /* Ensure minimum height for better scrollability on mobile */
-    max-height: none !important;  /* Remove max-height restriction on mobile */
-  }
-}
-
-
 code {
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
