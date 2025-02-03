@@ -54,10 +54,8 @@
                   <img src="assets/img/portfolio/dealership/inventory.jpg" loading="lazy" alt="Inventory Page Code">
                 </div>
                 <div class="swiper-slide media-container">
-                  <img src="assets/img/portfolio/dealership/serverless.jpg" loading="lazy" alt="Serverless Function Code">
-                </div>   
-                <div class="swiper-slide media-container">
-                  <pre><code alt="Fetch Logic Code" class="language-javascript">
+                  <pre><code alt="Serverless Function" class="language-javascript">
+  // Serverless function fetches data from air table
   const fetch = require('node-fetch');
 
   exports.handler = async function(event, context) {
@@ -118,6 +116,34 @@
 
                   </code></pre>
                 </div>
+                <div class="swiper-slide media-container">
+                  <pre><code alt="Fetch from server" class="language-javascript">
+  // Requests data and displays it on the page
+  function fetchVehicles() {
+    console.log('Fetching data from serverless function...');
+    
+    fetch('https://polite-cheesecake-1eb655.netlify.app/.netlify/functions/fetch-cars')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data fetched:', data);
+            if (!data.length) {
+                console.error('No records found.');
+                return;
+            }
+            vehicles = data;
+            populateFilters(data);
+            displayVehicles(data);
+            setYearRange(data);
+        })
+        .catch(error => console.error('Error fetching data from serverless function:', error));
+}
+                  </code></pre>
+                </div> 
               </div>
 
               <div class="swiper-button-prev"></div>
@@ -138,11 +164,11 @@
               </ul>
             </div>
             <div class="portfolio-description">
-              <h2>Car Dealership Website with Serverless Functions</h2>
+              <h2>Project Description</h2>
               <p>
                 This project showcases my dynamic car dealership website powered by serverless functions hosted on
-                Netlify. The key feature is real-time vehicle inventory management, with data fetched directly from
-                Airtable via a secure API integration.
+                Netlify. This project started out as a exercise to learn about serverless functions and as a result 
+                is a little all over the place. However
               </p>
             </div>
           </div>
