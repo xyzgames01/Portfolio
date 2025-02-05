@@ -24,7 +24,12 @@
 </url>
 <url>
   <loc>https://www.zacharyzawodny.com/dealership-details.html</loc>
-  <lastmod>2025-02-02T09:00:42+00:00</lastmod>
+  <lastmod>2025-02-05T05:38:42+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.zacharyzawodny.com/travelagency-details.html</loc>
+  <lastmod>2025-02-05T05:38:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
