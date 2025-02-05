@@ -120,20 +120,24 @@
     this.classList.toggle("bi-x");
   });
 
-
   /**
    * scroll to hash with out it in the url
    */
-  on('click', '.scrollto', function (e) {
-    e.preventDefault(); // Prevent default anchor click behavior
+  on(
+    "click",
+    ".scrollto",
+    function (e) {
+      e.preventDefault(); // Prevent default anchor click behavior
 
-    // Use the 'select' helper function to get the destination to scroll to
-    var scrollTarget = select(this.getAttribute('href'));
-    if (scrollTarget) {
-      // Smoothly scroll to the element
-      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, true);
+      // Use the 'select' helper function to get the destination to scroll to
+      var scrollTarget = select(this.getAttribute("href"));
+      if (scrollTarget) {
+        // Smoothly scroll to the element
+        scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    },
+    true
+  );
 
   /**
    * Hero Button Custom scroll because of paralax
@@ -153,22 +157,23 @@
         event.stopPropagation(); // Prevent click from propagating to the document
         const targetId = card.getAttribute("data-target");
         const dropdown = document.getElementById(targetId);
-  
+
         // Toggle visibility
-        const isVisible = dropdown.style.maxHeight && dropdown.style.maxHeight !== "0px";
-  
+        const isVisible =
+          dropdown.style.maxHeight && dropdown.style.maxHeight !== "0px";
+
         // Close all dropdowns
         document.querySelectorAll(".skill-dropdown").forEach((el) => {
           el.style.maxHeight = "0px";
         });
-  
+
         // Open the clicked dropdown if it was not already visible
         if (!isVisible) {
           dropdown.style.maxHeight = dropdown.scrollHeight + "px";
         }
       });
     });
-  
+
     // Add click listener to the document to close the dropdown when clicking outside
     document.addEventListener("click", () => {
       document.querySelectorAll(".skill-dropdown").forEach((el) => {
@@ -177,11 +182,10 @@
     });
   });
 
-
   // Shake to alert that this is clickable
   document.addEventListener("DOMContentLoaded", () => {
     const skillCards = document.querySelectorAll(".skill-card");
-  
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -192,107 +196,130 @@
         }
       });
     });
-  
+
     skillCards.forEach((card) => observer.observe(card));
   });
 
   /**
    * Porfolio isotope and filter
    */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
+  window.addEventListener("load", () => {
+    let portfolioContainer = select(".portfolio-container");
     if (portfolioContainer) {
       let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+        itemSelector: ".portfolio-item",
       });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+      let portfolioFilters = select("#portfolio-flters li", true);
 
-      on('click', '#portfolio-flters li', function (e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function (el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
+      on(
+        "click",
+        "#portfolio-flters li",
+        function (e) {
+          e.preventDefault();
+          portfolioFilters.forEach(function (el) {
+            el.classList.remove("filter-active");
+          });
+          this.classList.add("filter-active");
 
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function () {
-          AOS.refresh()
-        });
-      }, true);
+          portfolioIsotope.arrange({
+            filter: this.getAttribute("data-filter"),
+          });
+          portfolioIsotope.on("arrangeComplete", function () {
+            AOS.refresh();
+          });
+        },
+        true
+      );
     }
-
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
+    selector: ".portfolio-lightbox",
   });
 
   /**
-   * Initiate portfolio details lightbox 
+   * Initiate portfolio details lightbox
    */
   const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
+    selector: ".portfolio-details-lightbox",
+    width: "90%",
+    height: "90vh",
   });
 
   /**
    * Portfolio details slider
    */
-  new Swiper('.portfolio-details-slider', {
+  const portfolioSwiper = new Swiper(".portfolio-details-slider", {
     speed: 400,
     loop: true,
     autoHeight: true,
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
+      el: ".swiper-pagination",
+      type: "bullets",
+      clickable: true,
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  // Pause Slider when playing video
+  document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.swiper-slide video');
+  
+    videos.forEach(video => {
+      video.addEventListener('play', () => {
+        portfolioSwiper.autoplay.stop();
+      });
+  
+      video.addEventListener('pause', () => {
+        portfolioSwiper.autoplay.start();
+      });
+  
+      video.addEventListener('ended', () => {
+        portfolioSwiper.autoplay.start();
+      });
+    });
   });
 
   /**
    * Testimonials slider
    */
-  new Swiper('.testimonials-slider', {
+  new Swiper(".testimonials-slider", {
     speed: 600,
     loop: true,
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
-    slidesPerView: 'auto',
+    slidesPerView: "auto",
     pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
+      el: ".swiper-pagination",
+      type: "bullets",
+      clickable: true,
+    },
   });
 
   //Form spree ajax
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contact-form");
     const responseMessage = document.getElementById("form-response");
-  
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault(); // Prevent default form submission
-  
+
       const formData = new FormData(form);
       const actionUrl = "https://formspree.io/f/xldgbvdo"; // Replace with your Formspree ID
-  
+
       try {
         const response = await fetch(actionUrl, {
           method: "POST",
@@ -301,24 +328,27 @@
             Accept: "application/json",
           },
         });
-  
+
         if (response.ok) {
           // Show success message
           responseMessage.style.display = "block";
-          responseMessage.textContent = "Thank you for your message! I’ll get back to you soon.";
-  
+          responseMessage.textContent =
+            "Thank you for your message! I’ll get back to you soon.";
+
           // Clear the form
           form.reset();
         } else {
           // Show error message
           responseMessage.style.display = "block";
-          responseMessage.textContent = "Oops! Something went wrong. Please try again.";
+          responseMessage.textContent =
+            "Oops! Something went wrong. Please try again.";
           responseMessage.style.color = "red";
         }
       } catch (error) {
         console.error("Error:", error);
         responseMessage.style.display = "block";
-        responseMessage.textContent = "Oops! Something went wrong. Please try again.";
+        responseMessage.textContent =
+          "Oops! Something went wrong. Please try again.";
         responseMessage.style.color = "red";
       }
     });
