@@ -272,20 +272,36 @@
     },
   });
 
+  // Use the slideChangeTransitionEnd event to ensure the slide is fully visible
+  portfolioSwiper.on("slideChangeTransitionEnd", function () {
+    // Optional: small delay to ensure the active slide is fully rendered
+    setTimeout(() => {
+      const activeSlide = document.querySelector(".swiper-slide-active");
+      if (activeSlide) {
+        // Find all code blocks inside the active slide
+        const codeBlocks = activeSlide.querySelectorAll("pre code");
+        codeBlocks.forEach((block) => {
+          // Re-highlight the code block
+          Prism.highlightElement(block);
+        });
+      }
+    }, 50); // Adjust delay as needed
+  });
+
   // Pause Slider when playing video
-  document.addEventListener('DOMContentLoaded', () => {
-    const videos = document.querySelectorAll('.swiper-slide video');
-  
-    videos.forEach(video => {
-      video.addEventListener('play', () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll(".swiper-slide video");
+
+    videos.forEach((video) => {
+      video.addEventListener("play", () => {
         portfolioSwiper.autoplay.stop();
       });
-  
-      video.addEventListener('pause', () => {
+
+      video.addEventListener("pause", () => {
         portfolioSwiper.autoplay.start();
       });
-  
-      video.addEventListener('ended', () => {
+
+      video.addEventListener("ended", () => {
         portfolioSwiper.autoplay.start();
       });
     });

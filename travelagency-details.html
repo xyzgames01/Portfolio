@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Serverless Details</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://zacharyzawodny.com/assets/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://zacharyzawodny.com/assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://zacharyzawodny.com/assets/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="assets/vendor/prism/prism.js"></script>
+
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <main id="main">
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide media-container">
+                  <video src="assets/img/portfolio/travel_agency/travel_demo.mp4" loading="lazy" controls></video>
+                </div>
+                <div class="swiper-slide media-container">
+                  <img src="assets/img/portfolio/travel_agency/home.JPG" loading="lazy" alt="Inventory Page Code">
+                </div>
+                <div class="swiper-slide media-container">
+                  <span class="code-label">register.php</span>
+                  <pre><code class="language-php">&lt;?php
+// Start the PHP session to manage user sessions across pages
+session_start();
+
+// Include the database connection file
+require_once("webmodules/mysqli_connection.php");
+
+// Function to sanitize user input to prevent XSS and other attacks
+function sanitize($data) {
+  $data = trim($data); 
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+// Check if the request method is POST and all required fields are filled
+if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
+    if (!empty($_POST['pass']) && !empty($_POST['user']) && !empty($_POST['username'])) {
+
+        $validationed = false; // Flag to track if validation is successful
+        $err_msg = ""; // Variable to store error messages
+
+        // Sanitize the input data
+        $user = sanitize($_POST['user']);
+        $username = sanitize($_POST['username']);
+        $passwd = password_hash(sanitize($_POST['pass']), PASSWORD_DEFAULT); // Hash the password
+
+        // Escape special characters in the username for SQL safety
+        $user = mysqli_real_escape_string($db_conn, $user);
+
+        // Check if the username already exists in the database
+        $sql = "SELECT * FROM users WHERE login='$user';";
+        $result  = mysqli_query($db_conn, $sql);
+        $num_rows = mysqli_num_rows($result);
+
+        // If the username does not exist, insert the new user into the database
+        if (!$num_rows) {
+            $sql = "INSERT INTO users (login, hash, username) VALUES ('$user', '$passwd', '$username')";
+            if(mysqli_query($db_conn, $sql)){
+                echo "Records added successfully.";
+                $validationed = true;
+            } else {
+                echo "Unable to create account $sql. " . mysqli_error($link);
+            }
+        }
+
+        // If validation failed, set an error message
+        if ($validationed === false) {
+            $err_msg = "Unable To create account. Username already Exists";
+        } else {
+            // Close the database connection and redirect to the login page
+            mysqli_close($db_conn);
+            header("Location: login.php");
+            exit();
+        }
+    }
+} else {
+    // If the request is not POST, destroy any existing session to reset the login state
+    session_destroy();
+    session_unset();
+    session_start();
+}
+                </code></pre>
+                </div>
+                <div class="swiper-slide media-container">
+                  <span class="code-label">login.php</span>
+                  <pre><code alt="Fetch from server" class="language-php">&lt;?php
+// Start PHP session to manage user sessions
+session_start();
+
+// Include the database connection file
+require_once("webmodules/mysqli_connection.php");
+
+// Function to sanitize user input to prevent XSS attacks
+function sanitize($data) {
+  $data = trim($data);                  
+  $data = stripslashes($data);         
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+// Check if the form has been submitted
+if(strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
+    if (isset($_POST['pass']) && isset($_POST['user'])) {
+
+        // Predefine variables
+        $validationed = false; // Flag to track successful login
+        $err_msg = "";         // Store error messages
+
+        // Sanitize user inputs
+        $user = sanitize($_POST['user']);
+        $passwd = sanitize($_POST['pass']);
+
+        // Prevent SQL injection by escaping special characters
+        $user = mysqli_real_escape_string($db_conn, $user);
+                
+        // Query the database for the entered username
+        $sql = "SELECT * FROM users WHERE login='" . $user . "';";
+        $result = mysqli_query($db_conn, $sql) or die(mysqli_error($db_conn));
+        $row_count = mysqli_num_rows($result);
+
+        // If the user exists, verify the password
+        if ($row_count > 0) {
+            $row = mysqli_fetch_assoc($result);
+
+            // Verify the hashed password stored in the database
+            if (password_verify($passwd, $row['hash'])) {
+                // Store user information in session variables
+                $_SESSION['login_name'] = $row['login'];
+                $_SESSION['login_time'] = time(); // Store login timestamp
+                $_SESSION['user_name'] = $row['username'];
+                $_SESSION['address'] = $row['address'];
+                $_SESSION['phone'] = $row['phone'];
+
+                $validationed = true; // Set validation flag to true
+            }
+        }
+
+        // Handle login failure
+        if ($validationed === false) {
+            $err_msg = "Invalid User"; // Display error if login fails
+        } else {
+            // If authenticated, set session variable
+            $_SESSION['authenticated'] = true;
+
+            // Redirect the user to the homepage
+            header("Location: index.php");
+            exit();
+        }
+    }
+} else {
+    // Log out the user if they visit the login page without submitting the form
+    session_destroy(); // Destroy the current session
+    session_unset();   // Unset all session variables
+    session_start();   // Start a new session
+}
+</code></pre>
+                </div> 
+              </div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Full-Stack Web Development</li>
+                <li><strong>Tech Stack</strong>: HTML, CSS, PHP, MySQL</li>
+                <li><strong>Project date</strong>: April 2023</li>
+                <li><strong>Key Feature</strong>: User Authentication & Dynamic Data Managemen</li>
+              </ul>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="portfolio-description col-12">
+              <h2>Project Description</h2>
+            <p>
+              This project is a dynamic Travel Agency website developed as the final project for my web development class in college. 
+              It features a comprehensive user management system where users can register an account with secure password hashing, log in with authentication checks, and manage their personal information. 
+              The website integrates with a MySQL database to handle user data and product information, allowing real-time updates to travel packages and pricing. 
+              It showcases robust PHP backend functionality with session management, form validation, and secure database interactions.
+            </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
