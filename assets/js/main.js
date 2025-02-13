@@ -288,6 +288,8 @@
     }, 50); // Adjust delay as needed
   });
 
+  
+
   // Pause Slider when playing video
   document.addEventListener("DOMContentLoaded", () => {
     const videos = document.querySelectorAll(".swiper-slide video");
